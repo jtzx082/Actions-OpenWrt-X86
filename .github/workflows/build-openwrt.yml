@@ -118,10 +118,10 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
         
    
-    - name: lenyu
-      run: |
-        cd openwrt 
-        bash  lenyu.sh
+  #  - name: lenyu
+  #    run: |
+  #      cd openwrt 
+  #      bash  lenyu.sh
 
 
     - name: Update feeds
@@ -177,10 +177,10 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
    
-    - name: delete files
-      run: |
-        cd openwrt 
-        bash  rename.sh
+ #   - name: delete files
+ #     run: |
+ #       cd openwrt 
+  #      bash  rename.sh
     
 
     - name: Organize files
@@ -251,13 +251,13 @@ jobs:
       uses: Lenyu2020/delete-workflow-runs@main
       with:
         retain_days: 1
-        keep_minimum_runs: 5
+        keep_minimum_runs: 3
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.2.1
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 20
+        keep_latest: 3
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_TRIGGER_PAT }}
